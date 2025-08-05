@@ -22,6 +22,8 @@ const projects = [
     liveUrl: "https://sahil-pant.github.io/netflix-homepage-replica/",
     githubUrl: "https://github.com/Sahil-Pant/netflix-homepage-replica",
   },
+
+
   {
     title: "GSAP-powered Portfolio",
     description:
@@ -33,7 +35,7 @@ const projects = [
     year: "2024",
     status: "Completed",
     featured: true,
-    liveUrl: "https://github.com/Sahil-Pant/My-Portfolio",
+    liveUrl: "https://sahil-pant.github.io/My-Portfolio/",
     githubUrl: "https://github.com/Sahil-Pant/My-Portfolio",
   },
   {
@@ -76,8 +78,8 @@ const projects = [
     year: "2025",
     status: "Completed",
     featured: true,
-    liveUrl: "https://github.com/Sahil-Pant/My-Portfolio",
-    githubUrl: "https://github.com/Sahil-Pant/My-Portfolio",
+    liveUrl: "https://portfolio-chi-ashen-cb6kffz2kd.vercel.app/",
+    githubUrl: "https://github.com/Sahil-Pant/React-Portfolio",
   },
 
   
