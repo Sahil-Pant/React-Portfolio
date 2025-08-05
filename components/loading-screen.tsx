@@ -1,49 +1,67 @@
-"use client"
+"use client";
 
-import { motion, AnimatePresence } from "framer-motion"
-import { useState, useEffect } from "react"
-import { Code, Sparkles, Zap, Rocket } from "lucide-react"
+import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react";
+import { Code, Sparkles, Zap, Rocket } from "lucide-react";
 
 interface LoadingScreenProps {
-  onComplete: () => void
+  onComplete: () => void;
 }
 
 export function LoadingScreen({ onComplete }: LoadingScreenProps) {
-  const [progress, setProgress] = useState(0)
-  const [currentStep, setCurrentStep] = useState(0)
-  const [screenSize, setScreenSize] = useState({ width: 0, height: 0 })
+  const [progress, setProgress] = useState(0);
+  const [currentStep, setCurrentStep] = useState(0);
+  const [screenSize, setScreenSize] = useState({ width: 0, height: 0 });
 
   const steps = [
-    { icon: Code, text: "Initializing Portfolio", color: "from-cyan-400 to-blue-500" },
-    { icon: Sparkles, text: "Loading Projects", color: "from-purple-400 to-pink-500" },
-    { icon: Zap, text: "Optimizing Performance", color: "from-green-400 to-emerald-500" },
-    { icon: Rocket, text: "Ready to Launch", color: "from-orange-400 to-red-500" },
-  ]
+    {
+      icon: Code,
+      text: "Initializing Portfolio",
+      color: "from-cyan-400 to-blue-500",
+    },
+    {
+      icon: Sparkles,
+      text: "Loading Projects",
+      color: "from-purple-400 to-pink-500",
+    },
+    {
+      icon: Zap,
+      text: "Optimizing Performance",
+      color: "from-green-400 to-emerald-500",
+    },
+    {
+      icon: Rocket,
+      text: "Ready to Launch",
+      color: "from-orange-400 to-red-500",
+    },
+  ];
 
   useEffect(() => {
-    setScreenSize({
-      width: window.innerWidth,
-      height: window.innerHeight,
-    })
+    if (typeof window !== "undefined") {
+      setScreenSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    }
 
     const timer = setInterval(() => {
       setProgress((prev) => {
-        const newProgress = prev + 2
-        const stepIndex = Math.floor((newProgress / 100) * steps.length)
-        setCurrentStep(Math.min(stepIndex, steps.length - 1))
+        const newProgress = prev + 2;
+        const stepIndex = Math.floor((newProgress / 100) * steps.length);
+        setCurrentStep(Math.min(stepIndex, steps.length - 1));
 
         if (newProgress >= 100) {
-          clearInterval(timer)
-          setTimeout(onComplete, 500)
-          return 100
+          clearInterval(timer);
+          setTimeout(onComplete, 500);
+          return 100;
         }
 
-        return newProgress
-      })
-    }, 50)
+        return newProgress;
+      });
+    }, 50);
 
-    return () => clearInterval(timer)
-  }, [onComplete, steps.length])
+    return () => clearInterval(timer);
+  }, [onComplete, steps.length]);
 
   return (
     <AnimatePresence>
@@ -90,7 +108,11 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
             <div className="relative">
               <motion.div
                 animate={{ rotate: 360 }}
-                transition={{ duration: 8, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
+                transition={{
+                  duration: 8,
+                  repeat: Number.POSITIVE_INFINITY,
+                  ease: "linear",
+                }}
                 className="w-24 h-24 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full flex items-center justify-center mx-auto mb-4 shadow-2xl"
               >
                 <Code className="h-12 w-12 text-white" />
@@ -129,7 +151,9 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
             transition={{ delay: 0.5, duration: 0.8 }}
             className="text-4xl md:text-5xl font-bold text-white mb-4"
           >
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400">Sahil's</span>{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400">
+              Sahil's
+            </span>{" "}
             Portfolio
           </motion.h1>
 
@@ -149,11 +173,13 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
                   className={`w-8 h-8 bg-gradient-to-r ${steps[currentStep].color} rounded-lg flex items-center justify-center`}
                 >
                   {(() => {
-                    const IconComponent = steps[currentStep].icon
-                    return <IconComponent className="h-4 w-4 text-white" />
+                    const IconComponent = steps[currentStep].icon;
+                    return <IconComponent className="h-4 w-4 text-white" />;
                   })()}
                 </motion.div>
-                <span className="text-xl text-gray-300 font-medium">{steps[currentStep].text}</span>
+                <span className="text-xl text-gray-300 font-medium">
+                  {steps[currentStep].text}
+                </span>
               </div>
             </motion.div>
           </AnimatePresence>
@@ -173,13 +199,19 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
               >
                 <motion.div
                   animate={{ x: ["-100%", "100%"] }}
-                  transition={{ duration: 1.5, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+                  transition={{
+                    duration: 1.5,
+                    repeat: Number.POSITIVE_INFINITY,
+                    ease: "easeInOut",
+                  }}
                   className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
                 />
               </motion.div>
             </div>
             <div className="flex justify-between items-center mt-3">
-              <span className="text-gray-400 text-sm">{progress}% Complete</span>
+              <span className="text-gray-400 text-sm">
+                {progress}% Complete
+              </span>
               <motion.div
                 animate={{ opacity: [0.5, 1, 0.5] }}
                 transition={{ duration: 1.5, repeat: Number.POSITIVE_INFINITY }}
@@ -203,12 +235,15 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
                   index <= currentStep ? "bg-cyan-400" : "bg-gray-600"
                 }`}
                 animate={index === currentStep ? { scale: [1, 1.5, 1] } : {}}
-                transition={{ duration: 0.5, repeat: index === currentStep ? Number.POSITIVE_INFINITY : 0 }}
+                transition={{
+                  duration: 0.5,
+                  repeat: index === currentStep ? Number.POSITIVE_INFINITY : 0,
+                }}
               />
             ))}
           </motion.div>
         </div>
       </motion.div>
     </AnimatePresence>
-  )
+  );
 }
