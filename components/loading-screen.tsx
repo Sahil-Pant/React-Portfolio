@@ -11,6 +11,7 @@ interface LoadingScreenProps {
 export function LoadingScreen({ onComplete }: LoadingScreenProps) {
   const [progress, setProgress] = useState(0)
   const [currentStep, setCurrentStep] = useState(0)
+  const [screenSize, setScreenSize] = useState({ width: 0, height: 0 })
 
   const steps = [
     { icon: Code, text: "Initializing Portfolio", color: "from-cyan-400 to-blue-500" },
@@ -20,11 +21,14 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
   ]
 
   useEffect(() => {
+    setScreenSize({
+      width: window.innerWidth,
+      height: window.innerHeight,
+    })
+
     const timer = setInterval(() => {
       setProgress((prev) => {
         const newProgress = prev + 2
-
-        // Update current step based on progress
         const stepIndex = Math.floor((newProgress / 100) * steps.length)
         setCurrentStep(Math.min(stepIndex, steps.length - 1))
 
@@ -33,6 +37,7 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
           setTimeout(onComplete, 500)
           return 100
         }
+
         return newProgress
       })
     }, 50)
@@ -50,27 +55,28 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
       >
         {/* Animated Background */}
         <div className="absolute inset-0">
-          {[...Array(20)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-2 h-2 bg-cyan-400 rounded-full opacity-30"
-              animate={{
-                x: [0, Math.random() * window.innerWidth],
-                y: [0, Math.random() * window.innerHeight],
-                scale: [0, 1, 0],
-                opacity: [0, 0.6, 0],
-              }}
-              transition={{
-                duration: 3 + Math.random() * 2,
-                repeat: Number.POSITIVE_INFINITY,
-                delay: Math.random() * 2,
-              }}
-              style={{
-                left: Math.random() * 100 + "%",
-                top: Math.random() * 100 + "%",
-              }}
-            />
-          ))}
+          {screenSize.width > 0 &&
+            [...Array(20)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute w-2 h-2 bg-cyan-400 rounded-full opacity-30"
+                animate={{
+                  x: [0, Math.random() * screenSize.width],
+                  y: [0, Math.random() * screenSize.height],
+                  scale: [0, 1, 0],
+                  opacity: [0, 0.6, 0],
+                }}
+                transition={{
+                  duration: 3 + Math.random() * 2,
+                  repeat: Number.POSITIVE_INFINITY,
+                  delay: Math.random() * 2,
+                }}
+                style={{
+                  left: Math.random() * 100 + "%",
+                  top: Math.random() * 100 + "%",
+                }}
+              />
+            ))}
         </div>
 
         <div className="text-center relative z-10 max-w-md mx-auto px-6">
@@ -90,7 +96,6 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
                 <Code className="h-12 w-12 text-white" />
               </motion.div>
 
-              {/* Orbiting Elements */}
               {[Sparkles, Zap, Rocket].map((Icon, index) => (
                 <motion.div
                   key={index}
@@ -101,9 +106,7 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
                     ease: "linear",
                   }}
                   className="absolute inset-0"
-                  style={{
-                    transformOrigin: "50% 50%",
-                  }}
+                  style={{ transformOrigin: "50% 50%" }}
                 >
                   <div
                     className="absolute w-6 h-6 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full flex items-center justify-center"
@@ -120,7 +123,6 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
             </div>
           </motion.div>
 
-          {/* Title */}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -131,7 +133,6 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
             Portfolio
           </motion.h1>
 
-          {/* Current Step */}
           <AnimatePresence mode="wait">
             <motion.div
               key={currentStep}
@@ -157,7 +158,6 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
             </motion.div>
           </AnimatePresence>
 
-          {/* Progress Bar */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -190,14 +190,13 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
             </div>
           </motion.div>
 
-          {/* Step Indicators */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.2, duration: 0.5 }}
             className="flex justify-center gap-2 mt-8"
           >
-            {steps.map((step, index) => (
+            {steps.map((_, index) => (
               <motion.div
                 key={index}
                 className={`w-2 h-2 rounded-full transition-all duration-300 ${
