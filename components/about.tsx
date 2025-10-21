@@ -208,10 +208,8 @@ export function About() {
                     transition={{ delay: 0.3, duration: 0.6 }}
                     viewport={{ once: true }}
                   >
-                    I am a final-year Bachelor of Computer Applications (BCA) student passionate about programming and
-                    web development. Currently working as a Frontend Web Developer Intern at Jawaharlal Nehru
-                    University, where I develop responsive web applications using HTML, CSS, JavaScript, and Python
-                    Flask.
+                     I am a Bachelor of Computer Applications (BCA) graduate passionate about web development and programming. While my
+                    academic record is modest, I’ve built strong practical skills through projects, internships, and self-learning..
                   </motion.p>
 
                   <motion.p
@@ -221,9 +219,9 @@ export function About() {
                     transition={{ delay: 0.5, duration: 0.6 }}
                     viewport={{ once: true }}
                   >
-                    I'm currently growing my skills in React.js and Node.js to become a better full-stack developer.
-                    Passionate about innovation and learning, I aim to work on impactful projects and thrive in the tech
-                    industry.
+                    Proficient in HTML, CSS, JavaScript, C, Java, and Python, I focus on creating responsive, user-friendly web interfaces. Currently
+                    expanding my expertise in React.js and Node.js to strengthen my full-stack development capabilities. Driven by innovation and
+                    problem-solving, I aim to build impactful, real-world web solutions.
                   </motion.p>
 
                   <Separator className="bg-border/50" />
