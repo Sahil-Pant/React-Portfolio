@@ -93,9 +93,9 @@ const projects = [
     image: "/images/tribe.png",
     category: "Web Application",
     year: "2025",
-    status: "In Progress",
-    featured: false,
-    liveUrl: "",
+    status: "Completed",
+    featured: true,
+    liveUrl: "https://tribe.org.in/",
     githubUrl: "",
   },
 
