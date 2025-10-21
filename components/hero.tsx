@@ -189,8 +189,7 @@ export function Hero() {
                   transition={{ delay: 0.6, duration: 0.8 }}
                   className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed"
                 >
-                  Crafting digital experiences that blend creativity with cutting-edge technology. Currently interning
-                  at JNU and building the future, one line of code at a time.
+                  Crafting digital experiences that merge creativity with innovation, building seamless, impactful, and future-ready web solutions—one line of code at a time.
                 </motion.p>
               </motion.div>
 
