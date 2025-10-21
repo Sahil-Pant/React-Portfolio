@@ -76,7 +76,7 @@ const achievements = [
 ]
 
 const personalInfo = [
-  { icon: Calendar, label: "Age", value: "22 years" },
+  { icon: Calendar, label: "Age", value: "21 years" },
   { icon: MapPin, label: "Location", value: "Faridabad, Haryana" },
   { icon: Mail, label: "Email", value: "sahil111pant@gmail.com" },
 ]
