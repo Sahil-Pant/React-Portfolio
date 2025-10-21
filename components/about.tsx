@@ -37,7 +37,7 @@ const stats = [
     icon: GraduationCap,
     label: "Education",
     value: "BCA Student",
-    description: "Final Year",
+    description: "Graduated",
     color: "from-blue-500 to-cyan-500",
   },
   {
@@ -67,7 +67,7 @@ const achievements = [
     icon: Code,
   },
   {
-    title: "BCA Final Year",
+    title: "BCA Graduated",
     organization: "Computer Applications",
     date: "2022 - 2025",
     description: "Specializing in web development",
@@ -178,7 +178,7 @@ export function About() {
                           Frontend Developer
                         </Badge>
                         <Badge className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-purple-300 border-purple-500/30">
-                          BCA Student
+                          BCA Graduate
                         </Badge>
                         <Badge className="bg-gradient-to-r from-green-500/20 to-emerald-500/20 text-green-300 border-green-500/30">
                           Available for Work
